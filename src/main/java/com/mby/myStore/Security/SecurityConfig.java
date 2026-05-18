@@ -62,7 +62,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:4200",   // Angular
                 "http://10.0.2.2:8080", //android
-                "https://tu-api-production.up.railway.app"//swagger
+                "https://my-barber-store-admin-web.vercel.app",
+                "https://mystoreapi-production-6618.up.railway.app/swagger-ui/index.html"//swagger
 
         ));
 
