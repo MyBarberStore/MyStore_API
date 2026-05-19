@@ -70,12 +70,18 @@ public class AppointmentController {
             return ResponseEntity.ok(actualizada);
     }
 
+    @Operation(summary = "Cancelar cita", description = "Cambia el estado de una cita a CANCELLED.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Cita actualizada correctamente"),
+            @ApiResponse(responseCode = "404", description = "Cita no encontrada"),
+            @ApiResponse(responseCode = "403", description = "Usuario no autenticado")
+    })
     @PutMapping("cancel/{id}")
     public ResponseEntity<AppointmentResponse> cancelAppointment(@PathVariable Long id) {
         appointmentService.cancelAppointment(id);
         return ResponseEntity.ok().build();
     }
-    
+
 
     /**
      * Elimina una cita.
@@ -163,6 +169,7 @@ public class AppointmentController {
      * @return
      */
     @GetMapping("/services")
+    @Operation(summary = "Listar servicios de citas", description = "Recupera todo el catálogo de servicios disponibles para el flujo de reservas.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de servicios recuperada con éxito"),
             @ApiResponse(responseCode = "403", description = "No autorizado"),
@@ -177,6 +184,7 @@ public class AppointmentController {
      * @return
      */
     @GetMapping("/user/{id}")
+    @Operation(summary = "Obtener citas por Usuario", description = "Recupera el historial completo de citas vinculadas a un ID de cliente específico.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de citas recuperada con éxito"),
             @ApiResponse(responseCode = "403", description = "No autorizado"),
